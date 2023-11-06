@@ -13,12 +13,16 @@ app.use(express.json());
 // Connect to database
 const db = mysql.createConnection(
   {
-    host: 'root',
-    // MySQL username,
+    host: 'localhost',
     user: 'root',
-    // MySQL password
     password: 'rootroot',
     database: 'employees_db'
   },
   console.log(`Connected to the employees_db database.`)
 );
+
+
+db.connect(function(error){
+  if(error) throw error 
+})
+module.exports = db;
