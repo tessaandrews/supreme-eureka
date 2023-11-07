@@ -1,19 +1,40 @@
-GIVEN a command-line application that accepts user input
-WHEN I start the application
-THEN I am presented with the following options: view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role
-//inquirer
+# Employee Tracker
+  ![license badge](https://img.shields.io/badge/license-MIT-blue.svg)
 
-WHEN I choose to view all departments
-THEN I am presented with a formatted table showing department names and department ids
-WHEN I choose to view all roles
-THEN I am presented with the job title, role id, the department that role belongs to, and the salary for that role
-WHEN I choose to view all employees
-THEN I am presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
-WHEN I choose to add a department
-THEN I am prompted to enter the name of the department and that department is added to the database
-WHEN I choose to add a role
-THEN I am prompted to enter the name, salary, and department for the role and that role is added to the database
-WHEN I choose to add an employee
-THEN I am prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
-WHEN I choose to update an employee role
-THEN I am prompted to select an employee to update and their new role and this information is updated in the database 
+  ## Description
+  This interactive inquirer application allows users to view all of their departments, view all of their employees, view all of the roles of the department, update an employee role, and add an employee role.
+
+  ## Table of Contents
+  * [Installation](#installation) 
+  * [Usage](#usage) 
+  * [License](#license)
+  * [Collaborators](#collaborators) 
+  * [Questions](#questions)
+  
+  ## Application
+
+chrome-extension://mmeijimgabbpbgpdklnllpncmdofkcpn/app.html#/files/58945cfb-1757-41e6-ye0c-bc82ce816711
+
+
+
+  ## Installation
+  inquirer and mySQL
+
+  ## Usage
+  download inquirer, and my sequel, and then type in "node index.js" in the command line.
+
+   ## License
+    
+    This project is licensed under MIT .
+
+  ## Collaborators
+  N/A
+
+ 
+ ## Questions
+
+ If you would like to reach out or have any questions you can email me at [tessa4158@icloud.com](mailto:tessa4158@icloud.com).
+ If you would like yo see other projects I have built feel free to check my personal github : [tessaandrews](https://github.com/tessaandrews)
+
+
+** Received code/ assistance from tutor

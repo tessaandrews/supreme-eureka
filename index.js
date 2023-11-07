@@ -186,4 +186,3 @@ function addRole () {
 
 startPrompts ()
 
-//update= query employee table, select them, query role table, get role you would like to assign employee, insert into employee table
