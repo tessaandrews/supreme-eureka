@@ -12,7 +12,7 @@ inquirer
       choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department', 'Add a role', 'Add an employee', 'Update an employee role']
     },
   ]) .then (answer => {
-    if (answer.name === "View all departments"){
+    if (answer.name === "View all departments") {
       viewDepartments ()
     }
     else if (answer.name === "View all roles") {
@@ -27,15 +27,14 @@ inquirer
     else if (answer.name === "Add a role") {
       addRole ()
     }
-    else if (answer.name === "View an employee") {
-      viewEmployee ()
+    else if (answer.name === "Add an employee") {
+      addEmployee ()
     }
-    else if (answer.name === "Update an employee role") {
+    else if (answer.name === "Update an employee") {
       updateEmployee ()
     }
-  })
-  //THEN I am presented with the following options: view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role
-}
+})}
+  
 
 function viewDepartments () {
   db.query("select * from department", (err, res) => {
@@ -52,6 +51,15 @@ function viewRoles () {
     startPrompts()
   })
 }
+
+function viewEmployees () {
+  db.query("select * from employee", (err, res) => {
+    if (err) throw err 
+    console.table(res)
+    startPrompts()
+  })
+}
+
 
 function addDepartment () {
   inquirer.prompt ([
@@ -98,12 +106,82 @@ function addRole () {
       })
       startPrompts()
     })
+  },
 
+  function addEmployee () {
+    db.query("select * from employee", (err, res) => {
+      inquirer.prompt ([
+        {
+          type: "input",
+          name: "new_first_name",
+          message: "What is the first name of the new employee?",
+        },
+        {
+          type: "input",
+          name: "new_last_name",
+          message: "What is the last name of the new employee?",
+        },
+        {
+          type: "list",
+          name: "role_id",
+          message: "What department does this role belong to?",
+          // returns only names ie {name: "managements"}
+          choices: res.map(employee => employee.name),
+        },
+    ]).then (data => {
+      /// returns original department object ie (id: 1, name: "management")
+      let selectedEmployee =  res.find(employee => employee.name === data.employee_name )
+      db.query("insert into employee set ?", {
+        first_name: data.new_first_name,
+        last_name: data.new_last_name,
+        role_id: selectedEmployee.id,
+      })
+      startPrompts()
+    })
+  },
 
-
-
-  })
+  function updateEmployee () {
+    db.query("select * from employee", (err, res) => {
+      inquirer.prompt ([
+        {
+          type: "input",
+          name: "new_first_name",
+          message: "What is the first name of the new employee you would like to update?",
+        },
+        {
+          type: "input",
+          name: "new_last_name",
+          message: "What is the last name of the new employee you would like to update?",
+        },
+        {
+          type: "list",
+          name: "role_id",
+          message: "What department does this role belong to?",
+          // returns only names ie {name: "managements"}
+          choices: res.map(employee => employee.name),
+        },
+    ]).then (data => {
+      /// returns original department object ie (id: 1, name: "management")
+      let selectedEmployee =  res.find(employee => employee.name === data.employee_name )
+      db.query("insert into employee set ?", {
+        first_name: data.new_first_name,
+        last_name: data.new_last_name,
+        role_id: selectedEmployee.id,
+      })
+      startPrompts()
+    })
+  },
+)})
+})
 }
+  
+  
+      
+  
+
+  
+
+
 
 
 startPrompts ()
